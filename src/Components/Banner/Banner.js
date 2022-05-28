@@ -1,5 +1,6 @@
 import { Container, makeStyles, Typography } from '@material-ui/core'
 import React from 'react'
+import Carousel from './Carousel'
 
 const useStyles = makeStyles(() => ({
    banner: {
@@ -15,7 +16,7 @@ const useStyles = makeStyles(() => ({
    },
    tagline: {
       display: 'flex',
-      height: '40%',
+      height: '32%',
       flexDirection: 'column',
       justifyContent: 'center',
       textAlign: 'center'
@@ -34,7 +35,7 @@ const Banner = () => {
                   variant='h2'
                   style={{
                      fontWeight: 'bold',
-                     marginBottom: 16,
+                     marginBottom: 13,
                      fontFamily: 'Poppins'
                   }}
                >
@@ -52,6 +53,7 @@ const Banner = () => {
                   Get all info about your favorite Crypto
                </Typography>
             </div>
+            <Carousel />
          </Container>
       </div>
    )
