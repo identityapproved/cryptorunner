@@ -20,7 +20,15 @@ const useStyles = makeStyles(() => ({
    },
    pagination: {
       '& .MuiPaginationItem-root': {
-         color: '#C39EA0'
+         color: '#cbf3f0'
+      },
+      '& .MuiPaginationItem-root:hover': {
+         color: '#2ec4b6',
+      },
+      '& .Mui-selected': {
+         border: '1px solid #cbf3f0',
+         color: '#2ec4b6',
+         backgroundColor: 'transparent'
       }
    }
 }))
@@ -58,7 +66,7 @@ const CoinsTable = () => {
          <Container style={{ textAlign: 'center' }}>
             <Typography
                variant='h4'
-               style={{ margin: 16, fontFamily: 'Poppins' }}
+               style={{ margin: 16, fontFamily: 'Poppins', color: '#cbf3f0' }}
             >
                Market Cap Cryptocurrency Prices
             </Typography>
@@ -80,7 +88,7 @@ const CoinsTable = () => {
                            {['Coin', 'Price', '24h Change', 'Market Cap'].map((head) => (
                               <TableCell
                                  style={{
-                                    color: 'black',
+                                    color: '#cbf3f0',
                                     fontWeight: '700',
                                     fontFamily: 'Poppins'
                                  }}
@@ -164,7 +172,7 @@ const CoinsTable = () => {
                   justifyContent: 'center'
                }}
                classes={{ ul: classes.pagination }}
-               count={(handleSearch()?.length / 10).toFixed(0)}
+               count={+(handleSearch()?.length / 10).toFixed(0)}
                onChange={(_, value) => {
                   setPage(value)
 

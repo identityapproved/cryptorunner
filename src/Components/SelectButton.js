@@ -11,12 +11,12 @@ const SelectButton = ({ children, selected, onClick }) => {
          paddingLeft: 20,
          fontFamily: "Poppins",
          cursor: 'pointer',
-         backgroundColor: selected ? '#C39EA0' : '',
+         backgroundColor: selected ? '#cbf3f0' : '',
          color: selected ? 'black' : '',
          fontWeight: selected ? 700 : 500,
          '&:hover': {
-            backgroundColor: '#C39EA0',
-            color: 'black'
+            backgroundColor: '#2ec4b6',
+            // color: 'black'
          },
          width: '23%',
          marginTop: 5

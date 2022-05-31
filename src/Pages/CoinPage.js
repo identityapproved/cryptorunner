@@ -16,6 +16,7 @@ const CoinPage = () => {
 
    const fetchCoin = async () => {
       const { data } = await axios.get(SingleCoin(id))
+      console.log("~ data", data)
       setCoin(data)
    }
 
@@ -41,7 +42,7 @@ const CoinPage = () => {
          flexDirection: 'column',
          alignItems: 'center',
          marginTop: 25,
-         borderRight: '2px solid grey'
+         borderRight: '2px solid #cbf3f0'
       },
       description: {
          width: '100%',
@@ -65,12 +66,18 @@ const CoinPage = () => {
          }, [theme.breakpoints.down('xs')]: {
             alignItems: 'start',
          }
+      },
+      heading: {
+         fontFamily: 'Poppins',
+         marginBottom: 23,
+         fontWeight: 'bold',
+         color: '#cbf3f0'
       }
    }));
 
    const classes = useStyles()
 
-   if (!coin) return <LinearProgress style={{ backgroundColor: 'ghostwhite' }} />
+   if (!coin) return <LinearProgress style={{ backgroundColor: '#cbf3f0' }} />
 
    return (
       <div className={classes.container}>

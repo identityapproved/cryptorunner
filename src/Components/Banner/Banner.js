@@ -35,6 +35,7 @@ const Banner = () => {
                   variant='h2'
                   style={{
                      fontWeight: 'bold',
+                     color: 'white',
                      marginBottom: 13,
                      fontFamily: 'Poppins'
                   }}

@@ -11,6 +11,8 @@ const CryptoContext = ({ children }) => {
          setSymbol('$')
       } else if (currency === 'EUR') {
          setSymbol('€')
+      } else if (currency === 'UAH') {
+         setSymbol('₴')
       }
    }, [currency])
 

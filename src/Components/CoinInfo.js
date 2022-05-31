@@ -14,16 +14,17 @@ const CoinInfo = ({ coin }) => {
    const [historicalData, setHistoricalData] = useState()
    const [days, setDays] = useState(1)
 
-   const { currency, symbol } = CryptoState()
+   const { currency } = CryptoState()
 
    const fetchHistoricalData = async () => {
       const { data } = await axios.get(HistoricalChart(coin.id, days, currency))
-      console.log("~ data", data)
+
       setHistoricalData(data.prices)
    }
 
    useEffect(() => {
       fetchHistoricalData()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [currency, days])
 
    const useStyles = makeStyles((theme) => ({
@@ -62,13 +63,13 @@ const CoinInfo = ({ coin }) => {
                         data={{
                            labels: historicalData.map((coin) => {
                               let date = new Date(coin[0])
-                              let time = date.getHours()
-                              return days === 1 ? time : date
+                              let time = `${date.getHours()}:${date.getMinutes()}`
+                              return days === 1 ? time : date.toLocaleDateString()
                            }),
                            datasets: [{
                               data: historicalData.map((coin) => coin[1]),
                               label: `Price ( Past ${days} Days) in ${currency}`,
-                              borderColor: '#F8E5E5'
+                              borderColor: '#2ec4b6'
                            }]
                         }}
                         options={{

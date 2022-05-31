@@ -1,5 +1,3 @@
-/* #000000 #FA255E #C39EA0 #F8E5E5 */
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;800&display=swap');
 
 * {
@@ -11,5 +9,5 @@
 
 a {
   text-decoration: none;
-  color: #F8E5E5;
+  color: #2ec4b6;
 }
