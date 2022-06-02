@@ -1,7 +1,11 @@
-import { AppBar, Backdrop, Button, Fade, makeStyles, Modal, Tab, Tabs } from '@material-ui/core';
+import { AppBar, Backdrop, Box, Button, Fade, makeStyles, Modal, Tab, Tabs } from '@material-ui/core';
 import { useState } from 'react';
+import GoogleButton from 'react-google-button';
 import Login from './Login';
 import Signup from './Signup';
+import { GoogleAuthProvider, signInWithPopup } from '@firebase/auth'
+import { auth } from '../../firebase';
+import { CryptoState } from '../../CryptoContext';
 
 const useStyles = makeStyles((theme) => ({
    modal: {
@@ -14,6 +18,16 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.background.paper,
       color: 'white',
       borderRadius: 10,
+   },
+   google: {
+      padding: 23,
+      paddingTop: 0,
+      display: 'flex',
+      flexDirection: 'column',
+      textAlign: 'center',
+      gap: 23,
+      fontSize: 13,
+
    }
 }))
 
@@ -27,6 +41,29 @@ export default function AuthModal() {
    const handleChange = (event, newValue) => {
       setValue(newValue);
    };
+   const { setAlert } = CryptoState();
+   const googleProvider = new GoogleAuthProvider()
+
+   const signInWithGoogle = () => {
+      signInWithPopup(auth, googleProvider)
+         .then((res) => {
+            setAlert({
+               open: true,
+               message: `Successfully. Welcome ${res.user.email}`,
+               type: 'success'
+            })
+
+            handleClose()
+         })
+         .catch(error => {
+            setAlert({
+               open: true,
+               message: error.message,
+               type: 'error'
+            })
+            return
+         })
+   }
 
    const classes = useStyles()
 
@@ -73,16 +110,27 @@ export default function AuthModal() {
                         <Tab label="Log In" />
                      </Tabs>
                   </AppBar>
+
                   {value === 0 && <Signup handleClose={handleClose} />}
                   {value === 1 && <Login handleClose={handleClose} />}
+
+                  <Box className={classes.google}>
+                     <span style={{ borderTop: '1px solid white' }}></span>
+                     <GoogleButton
+                        type='light'
+                        style={{
+                           width: '100%',
+                           outline: 'none',
+                           fontFamily: "Popping",
+                           fontSize: 23,
+                           backgroundColor: '#2ec4b6',
+                           fontWeight: 'bold'
+                        }}
+                        onClick={signInWithGoogle}
+                     />
+                  </Box>
                </div>
 
-               {/* <Typography id="transition-modal-title" variant="h6" component="h2">
-                     Text in a modal
-                  </Typography>
-                  <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                     Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                  </Typography> */}
 
             </Fade>
          </Modal>

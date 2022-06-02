@@ -127,7 +127,7 @@ const CoinsTable = () => {
                                     </TableCell>
 
                                     <TableCell align='right'>
-                                       {symbol}{' '}{numberWithCommas(row.current_price.toFixed(2))}
+                                       {symbol}{' '}{numberWithCommas(row.current_price)}
                                     </TableCell>
 
                                     <TableCell align='right'
@@ -141,7 +141,7 @@ const CoinsTable = () => {
                                     </TableCell>
 
                                     <TableCell align='right'>
-                                       {symbol}{' '}{numberWithCommas(row.market_cap.toString())}
+                                       {symbol}{' '}{numberWithCommas(row.market_cap)}
                                     </TableCell>
 
                                  </TableRow>
